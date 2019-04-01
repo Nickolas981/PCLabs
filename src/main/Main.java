@@ -3,20 +3,18 @@ package main;
 import fileio.TaskFileManager;
 import inputgenerator.InputProvider;
 import inputgenerator.RandomInputGenerator;
-import lab1.ThreadAltTaskExecutor;
 import lab1.ThreadAltTaskExecutor_;
 import lab1.ThreadTaskExecutor;
-import lab2.CyclicBarrierTaskExecutor;
 import lab2.CyclicBarrierTaskExecutor_;
-import lab3.ExecutorsTaskExecutor;
 import lab3.ExecutorsTaskExecutor_;
+import lab4.LockTaskExecutor;
 import models.TaskResults;
 import models.Tasks;
 import test.BlockingTaskExecutor;
 
 public class Main {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static void main(String[] args) {
 
@@ -24,11 +22,12 @@ public class Main {
         generateFile(fileManager);
         Tasks tasks = fileManager.load();
 
-        executeBlocking(tasks);
-        executeThreads(tasks);
-        executeThreadsAlts(tasks);
-        executeCyclicBarrier(tasks);
+//        executeBlocking(tasks);
+//        executeThreads(tasks);
+//        executeThreadsAlts(tasks);
+//        executeCyclicBarrier(tasks);
         executeExecutors(tasks);
+        executeFuture(tasks);
 //        MatrixHelper.test(tasks.getFirstTask());
     }
 
@@ -39,12 +38,17 @@ public class Main {
     private static void executeThreads(Tasks tasks) {
         executeTasks(tasks, new ThreadTaskExecutor(), "Thread");
     }
+
     private static void executeThreadsAlts(Tasks tasks) {
         executeTasks(tasks, new ThreadAltTaskExecutor_(), "ThreadAlt");
     }
 
     private static void executeExecutors(Tasks tasks) {
         executeTasks(tasks, new ExecutorsTaskExecutor_(), "Executors");
+    }
+
+    private static void executeFuture(Tasks tasks) {
+        executeTasks(tasks, new LockTaskExecutor(), "Future");
     }
 
     private static void executeCyclicBarrier(Tasks tasks) {
@@ -64,6 +68,6 @@ public class Main {
 
     private static void generateFile(TaskFileManager fileManager) {
         InputProvider generator = new RandomInputGenerator();
-        fileManager.save(generator.generate(3));
+        fileManager.save(generator.generate(10));
     }
 }

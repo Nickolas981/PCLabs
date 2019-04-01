@@ -4,35 +4,33 @@ import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import static helpers.GCD.gcd;
 import static helpers.ListHelper.list;
 import static helpers.MatrixHelper.*;
 
 public abstract class ATaskExecutor implements TaskExecutor {
-
     protected int chunkSize;
     protected int chunkCount;
     protected int size;
 
-    private List<Float> firstBMC;
-    private List<Float> firstDMM;
-    private List<Float> firstBMM;
-    private List<Float> firstResult;
+    protected List<Float> firstBMC;
+    protected List<Float> firstDMM;
+    protected List<Float> firstBMM;
+    protected List<Float> firstResult;
 
-    private List<Float> secondBMZ;
-    private List<Float> secondDMXa;
-    private List<Float> secondResult;
+    protected List<Float> secondBMZ;
+    protected List<Float> secondDMXa;
+    protected List<Float> secondResult;
 
-    private List<List<Float>> thirdMBMK;
-    private List<List<Float>> thirdMXMTMM;
-    private List<List<Float>> thirdResult;
+    protected List<List<Float>> thirdMBMK;
+    protected List<List<Float>> thirdMXMTMM;
+    protected List<List<Float>> thirdResult;
 
-    private List<Float> fourthBD;
-    private List<List<Float>> fourthMZMEMM;
-    private List<List<Float>> fourthMEMM;
-    private List<List<Float>> fourthResult;
+    protected List<Float> fourthBD;
+    protected List<List<Float>> fourthMZMEMM;
+    protected List<List<Float>> fourthMEMM;
+    protected List<List<Float>> fourthResult;
 
     protected abstract void syncFirst();
 
@@ -79,7 +77,8 @@ public abstract class ATaskExecutor implements TaskExecutor {
     public TaskResults execute(Tasks tasks) {
         TaskResults results = new TaskResults();
 
-        size = tasks.getFirstTask().getB().size();
+        switch (size = tasks.getFirstTask().getB().size()) {
+        }
 
         chunkCount = gcd(size, Runtime.getRuntime().availableProcessors());
         chunkSize = tasks.getFirstTask().getB().size() / chunkCount;

@@ -143,8 +143,13 @@ public class MatrixHelper {
             List<Float> addRow = add.get(i);
             for (int j = 0; j < fSize; j++) {
                 float sum = 0;
+                float _sum = 0;
                 for (int k = 0; k < fSize; k++) {
-                    sum += firstRow.get(k) * second.get(k).get(j);
+                    float _result = firstRow.get(k) * second.get(k).get(j);
+                    float y = _result - _sum;
+                    float t = sum + _result;
+                    _sum = (t - sum) - y;
+                    sum = t;
                 }
                 resultRow.set(j, sum + addRow.get(j));
             }
