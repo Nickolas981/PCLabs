@@ -13,32 +13,32 @@ import java.util.concurrent.FutureTask;
 
 public class BlockingQueueExecutor extends LockTaskExecutor {
 
-    class FirstResult {
-        List<Float> list = new ArrayList<>();
+    public class FirstResult {
+        public List<Float> list = new ArrayList<>();
 
         public FirstResult(List<Float> list) {
             this.list = list;
         }
     }
 
-    class SecondResult {
-        List<Float> list = new ArrayList<>();
+    public class SecondResult {
+        public List<Float> list = new ArrayList<>();
 
         public SecondResult(List<Float> list) {
             this.list = list;
         }
     }
 
-    class ThirdResult {
-        List<List<Float>> list = new ArrayList<>();
+    public class ThirdResult {
+        public List<List<Float>> list = new ArrayList<>();
 
         public ThirdResult(List<List<Float>> list) {
             this.list = list;
         }
     }
 
-    class FourthResult {
-        List<List<Float>> list = new ArrayList<>();
+    public class FourthResult {
+        public List<List<Float>> list = new ArrayList<>();
 
         public FourthResult(List<List<Float>> list) {
             this.list = list;
