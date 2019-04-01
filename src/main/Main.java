@@ -8,6 +8,7 @@ import lab1.ThreadTaskExecutor;
 import lab2.CyclicBarrierTaskExecutor_;
 import lab3.ExecutorsTaskExecutor_;
 import lab4.LockTaskExecutor;
+import lab5.BlockingQueueExecutor;
 import models.TaskResults;
 import models.Tasks;
 import test.BlockingTaskExecutor;
@@ -27,7 +28,8 @@ public class Main {
 //        executeThreadsAlts(tasks);
 //        executeCyclicBarrier(tasks);
         executeExecutors(tasks);
-        executeFuture(tasks);
+//        executeFuture(tasks);
+        executeQueue(tasks);
 //        MatrixHelper.test(tasks.getFirstTask());
     }
 
@@ -49,6 +51,10 @@ public class Main {
 
     private static void executeFuture(Tasks tasks) {
         executeTasks(tasks, new LockTaskExecutor(), "Future");
+    }
+
+    private static void executeQueue(Tasks tasks) {
+        executeTasks(tasks, new BlockingQueueExecutor(), "Queue");
     }
 
     private static void executeCyclicBarrier(Tasks tasks) {
